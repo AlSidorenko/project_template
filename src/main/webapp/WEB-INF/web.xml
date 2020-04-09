@@ -6,4 +6,14 @@
 
     <display-name>Archetype Created Web Application</display-name>
 
+    <servlet>
+        <servlet-name>Servl</servlet-name>
+        <servlet-class>ua.training.controller.Servlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Servl</servlet-name>
+        <url-pattern>/app/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>
