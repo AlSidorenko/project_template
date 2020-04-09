@@ -56,7 +56,7 @@ public class Servlet extends HttpServlet {
         String page = command.execute(request, response);
 
         if (page.contains("redirect")) {
-            response.sendRedirect(page.replace("redirect", "/app"));
+            response.sendRedirect(page.replace("redirect:", "/app"));
         } else {
             request.getRequestDispatcher(page).forward(request, response);
         }

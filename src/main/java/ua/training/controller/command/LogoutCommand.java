@@ -1,5 +1,7 @@
 package ua.training.controller.command;
 
+import ua.training.model.entity.enums.ROLE;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +16,9 @@ public class LogoutCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+        String context = (String) request.getServletContext().getAttribute("login");
+        CommandUtility.logUserOut(request, context);
+        CommandUtility.setUserRole(request, ROLE.UNKNOWN, "UNKNOWN");
+        return "redirect:/main";
     }
 }

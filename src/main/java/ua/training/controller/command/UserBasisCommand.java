@@ -14,6 +14,7 @@ public class UserBasisCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+        //String lang = (String) request.getSession().getAttribute("lang");
+        return "/WEB-INF/user/user.jsp";
     }
 }
