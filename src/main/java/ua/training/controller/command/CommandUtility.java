@@ -15,6 +15,7 @@ import java.util.HashSet;
  * @since 0.1.
  */
 public class CommandUtility {
+    
     static void setUserRole(HttpServletRequest request, ROLE role, String login) {
         HttpSession session = request.getSession();
         ServletContext context = request.getServletContext();
