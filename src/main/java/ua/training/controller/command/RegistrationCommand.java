@@ -4,6 +4,7 @@ import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.impl.JDBCUserDao;
 import ua.training.model.entity.User;
 import ua.training.model.entity.enums.ROLE;
+import ua.training.model.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,7 +45,7 @@ public class RegistrationCommand implements Command {
         user.setUserLogin(login);
         user.setUserPassword(password);
 
-        /*if (UserService.validateUserInfoWithRegEx(user) && !(CommandUtility.checkUserIsLogged(request, login))) {
+        if (UserService.validateUserInfoWithRegEx(user) && !(CommandUtility.checkUserIsLogged(request, login))) {
             userDao.create(user);
             CommandUtility.setUserRole(request, ROLE.USER, user.getUserLogin());
             CommandUtility.addUserToLoggedUsersByLogin(request, user.getUserLogin());
@@ -54,12 +55,12 @@ public class RegistrationCommand implements Command {
         } else {
             //String lang = (String) request.getSession().getAttribute("lang");
             return "/registration.jsp";
-        }*/
+        }
 
-        userDao.create(user);
+        /*userDao.create(user);
         CommandUtility.setUserRole(request, ROLE.USER, user.getUserLogin());
         CommandUtility.addUserToLoggedUsersByLogin(request, user.getUserLogin());
         //String lang = (String) request.getSession().getAttribute("lang");
-        return "redirect:/user";
+        return "redirect:/user";*/
     }
 }
