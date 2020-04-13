@@ -25,13 +25,11 @@ public class LoginCommand implements Command {
         String pass = request.getParameter("pass");
 
         if (login == null || login.equals("") || pass == null || pass.equals("")) {
-            //String lang = (String) request.getSession().getAttribute("lang");
             return "/login.jsp";
         }
         System.out.println(login + " " + pass);
 
         if (CommandUtility.checkUserIsLogged(request, login)) {
-            //String lang = (String) request.getSession().getAttribute("lang");
             return "/WEB-INF/error.jsp";
         }
 
@@ -47,7 +45,6 @@ public class LoginCommand implements Command {
             return "redirect:/user";
         } else {
             CommandUtility.setUserRole(request, ROLE.UNKNOWN, login);
-            //String lang = (String) request.getSession().getAttribute("lang");
             return "/login.jsp";
         }
     }

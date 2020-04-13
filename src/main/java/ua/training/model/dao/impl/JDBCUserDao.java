@@ -7,11 +7,19 @@ import ua.training.model.entity.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
+/**
+ * Created on 09.04.2020 8:44.
+ *
+ * @author Aleks Sidorenko (e-mail: alek.sidorenko@gmail.com).
+ * @version Id$.
+ * @since 0.1.
+ */
 public class JDBCUserDao implements UserDao {
 
     private Connection connection;
-
+    private ResourceBundle resource = ResourceBundle.getBundle("database");
 
     JDBCUserDao(Connection connection) {
         this.connection = connection;
@@ -20,7 +28,7 @@ public class JDBCUserDao implements UserDao {
     @Override
     public void create(User user) {
         try (PreparedStatement ps = connection.prepareStatement(
-                "INSERT INTO users (role, first_name , last_name , login , password) VALUES (?, ? ,? ,? ,?)")
+                resource.getString("db.create"))
         ) {
             setPrepareStatementsParameters(user, ps);
             ps.executeUpdate();
@@ -39,8 +47,9 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public User findById(int id) {
-        try (PreparedStatement ps = connection.prepareStatement
-                ("SELECT * FROM users WHERE idusers = ?")) {
+        try (PreparedStatement ps = connection.prepareStatement(
+                resource.getString("db.findById"))
+        ) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             UserMapper userMapper = new UserMapper();
@@ -57,7 +66,7 @@ public class JDBCUserDao implements UserDao {
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
 
-        final String query = "" + " select * from users";
+        final String query = resource.getString("db.findAll");
         try (Statement st = connection.createStatement()) {
             ResultSet rs = st.executeQuery(query);
 
@@ -78,8 +87,8 @@ public class JDBCUserDao implements UserDao {
     @Override
     public void update(User user, int id) {
         try (PreparedStatement ps = connection.prepareStatement(
-                "UPDATE users SET first_name = ? , last_name = ? , login = ? , password = ? " +
-                        "WHERE idusers = ?")) {
+                resource.getString("db.update"))
+        ) {
             setPrepareStatementsParameters(user, ps);
             ps.setInt(5, id);
             ps.executeUpdate();
@@ -91,7 +100,8 @@ public class JDBCUserDao implements UserDao {
     @Override
     public void delete(int id) {
         try (PreparedStatement ps = connection.prepareStatement(
-                "DELETE FROM users  WHERE idusers = ?")) {
+                resource.getString("db.delete"))
+        ) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -119,7 +129,8 @@ public class JDBCUserDao implements UserDao {
 
     public User getUserByLogin(String login) {
         try (PreparedStatement ps = connection.prepareStatement(
-                "SELECT * FROM users  WHERE login = ?")) {
+                resource.getString("db.getUserByLogin"))
+        ) {
             ps.setString(1, login);
             ResultSet rs = ps.executeQuery();
             UserMapper userMapper = new UserMapper();

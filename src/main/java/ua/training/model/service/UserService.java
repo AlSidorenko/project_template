@@ -13,22 +13,13 @@ import static ua.training.model.service.RegexContainer.*;
  * @since 0.1.
  */
 public class UserService {
+
     DaoFactory daoFactory = DaoFactory.getInstance();
 
-    /*public Optional<User> login(String login, String password) {
-        Optional<User> result;
-
-        try (UserDao userDao = daoFactory.createUserDao()) {
-            result = userDao.findAll();
-        }
-
-        return result;
-    }*/
-
     public boolean validateData(User user){
-
         return false;
     }
+
     public static boolean validateUserInfoWithRegEx(User user) {
         return user.getUserFirstName().matches(REGEX_NAME_LAT) &&
                 user.getUserLastName().matches(REGEX_NAME_LAT) &&

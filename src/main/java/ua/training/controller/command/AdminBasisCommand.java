@@ -14,7 +14,6 @@ public class AdminBasisCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        //String lang = (String) request.getSession().getAttribute("lang");
         return "/WEB-INF/admin/admin.jsp";
     }
 }

@@ -30,15 +30,12 @@ public class RegistrationCommand implements Command {
 
         if (firstName == null || firstName.equals("") || lastName == null || lastName.equals("") || login == null
                 || login.equals("") || password == null || password.equals("")) {
-            //System.out.println("Not");
-            //String lang = (String) request.getSession().getAttribute("lang");
             return "/registration.jsp";
         }
         System.out.println(firstName + " " + lastName + " " + login + " " + password);
 
         User user = new User();
 
-        //user.setUserRoleFromDB(ROLE.USER.getRole());
         user.setUserRole(ROLE.USER);
         user.setUserFirstName(firstName);
         user.setUserLastName(lastName);
@@ -49,18 +46,9 @@ public class RegistrationCommand implements Command {
             userDao.create(user);
             CommandUtility.setUserRole(request, ROLE.USER, user.getUserLogin());
             CommandUtility.addUserToLoggedUsersByLogin(request, user.getUserLogin());
-            //String lang = (String) request.getSession().getAttribute("lang");
-            //return "/WEB-INF/user/user.jsp";
             return "redirect:/user";
         } else {
-            //String lang = (String) request.getSession().getAttribute("lang");
             return "/registration.jsp";
         }
-
-        /*userDao.create(user);
-        CommandUtility.setUserRole(request, ROLE.USER, user.getUserLogin());
-        CommandUtility.addUserToLoggedUsersByLogin(request, user.getUserLogin());
-        //String lang = (String) request.getSession().getAttribute("lang");
-        return "redirect:/user";*/
     }
 }

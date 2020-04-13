@@ -20,7 +20,6 @@ public class CommandUtility {
         HttpSession session = request.getSession();
         ServletContext context = request.getServletContext();
         context.setAttribute("login", login);
-        //session.setAttribute("login", login);
         session.setAttribute("role", role);
     }
 
@@ -48,7 +47,6 @@ public class CommandUtility {
         HttpSession session = request.getSession();
 
         ServletContext context = request.getServletContext();
-        //context.setAttribute("login", null);
         session.setAttribute("login", null);
         session.setAttribute("role", null);
     }
