@@ -13,9 +13,9 @@ public interface RegexContainer {
     // Latin name
     String REGEX_NAME_LAT = "^[A-Z][a-z]{1,20}$";
     // Login
-    String REGEX_LOGIN = "^[A-Za-z0-9_-]{8,20}$";
+    String REGEX_LOGIN = "^[A-Za-z0-9_-]{3,20}$";
     //Password
-    String REGEX_PASSWORD = "^[A-Za-z0-9_-]{8,20}$";
+    String REGEX_PASSWORD = "^[A-Za-z0-9_-]{3,20}$";
     // E-mail
     String REGEX_EMAIL = "^[A-Za-z0-9+_.-]+@(.+)$";
 }
